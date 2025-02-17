@@ -1,31 +1,52 @@
 .home {
-  padding: 20px;
-}
-
-.add-task input,
-.add-task button {
-  margin: 5px;
-}
-
-.assignment-table,
-.courses-table,
-.feedback-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.assignment-table th,
-.courses-table th,
-.feedback-table th,
-.assignment-table td,
-.courses-table td,
-.feedback-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.assignment-table th,
-.courses-table th,
-.feedback-table th {
-  background-color: #f4f4f4;
-}
+    padding: 20px;
+  }
+  
+  .add-task input,
+  .add-task button,
+  .add-course input,
+  .add-course button {
+    margin: 5px;
+  }
+  
+  .assignment-table,
+  .courses-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .assignment-table th,
+  .courses-table th,
+  .assignment-table td,
+  .courses-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .assignment-table th,
+  .courses-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .add-course {
+    margin-top: 20px;
+  }
+  
+  .add-course input {
+    padding: 8px;
+    width: 200px;
+  }
+  
+  .add-course button {
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-course button:hover {
+    background-color: #0056b3;
+  }
+  
