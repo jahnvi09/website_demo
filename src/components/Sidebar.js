@@ -16,6 +16,9 @@ function Sidebar() {
         <li>
           <Link to="/upload">Upload</Link> {/* Navigates to Upload.js */}
         </li>
+        <li>
+          <Link to="/notes">Notes</Link> {/* Navigates to Upload.js */}
+        </li>
       </ul>
     </div>
   );

@@ -4,6 +4,7 @@ import Homej from './components/Homej';
 import LoginPage from './components/LoginPage';
 import Home from './components/Home';
 import Upload from './components/Upload';
+import Notes from './components/Notes';
 import Sidebar from './components/Sidebar';
 import RegistrationPage from './components/RegistrationPage';
 import ContactUs from './components/ContactUs';
@@ -31,6 +32,7 @@ function MainLayout() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/notes" element={<Notes />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/contact" element={<ContactUs />} />
         
@@ -43,4 +45,5 @@ function MainLayout() {
 }
 
 export default App;
+
 
