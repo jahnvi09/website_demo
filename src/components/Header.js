@@ -9,12 +9,12 @@ function Header() {
                 <h2 className="header_logo">STUDENT PLANNER</h2>
             </Link>
             <div className='header_nav'>
-                <Link to="/login" className='header_link'>
+                <Link to="/contact" className='header_link'>
                     <div className='header_option'>
                         <span className='header_optionLineOne'>Contact</span>
                     </div>
                 </Link>
-                <Link to="/register" className='header_link'>
+                <Link to="/resources" className='header_link'>
                     <div className='header_option'>
                         <span className='header_optionLineOne'>Resources</span>
                     </div>
@@ -24,7 +24,7 @@ function Header() {
                         <span className='header_optionLineOne'>Login</span>
                     </div>
                 </Link>
-                <Link to="/logout" className='header_link'>
+                <Link to="/register" className='header_link'>
                     <div className='header_option'>
                         <span className='header_optionLineOne'>Register</span>
                     </div>
