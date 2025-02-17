@@ -11,7 +11,7 @@ function Sidebar() {
           <Link to="/">Home</Link> {/* Navigates to Homej.js */}
         </li>
         <li>
-          <Link to="/home">Home Page</Link> {/* Navigates to Home.js */}
+          <Link to="/home">Student Dashboard</Link> {/* Navigates to Home.js */}
         </li>
         <li>
           <Link to="/upload">Upload</Link> {/* Navigates to Upload.js */}
