@@ -50,3 +50,78 @@
     background-color: #0056b3;
   }
   
+  .dashboard {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .calendar-section, .deadline-widget {
+    width: 48%;
+  }
+  
+  .deadline-widget {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .deadline-widget ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .deadline-widget li {
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+  }
+  
+  .days-left {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #28a745;
+    color: white;
+  }
+  
+  .days-left.urgent {
+    background: #dc3545;
+  }
+  
+  .completed-task {
+    background-color: #d4edda !important; /* Light green for completed tasks */
+    text-decoration: line-through;
+  }
+  
+  .deadline-widget li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+  }
+  
+  .done-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .done-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .days-left.urgent {
+    background: #dc3545;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  
