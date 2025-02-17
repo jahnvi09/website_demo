@@ -1,0 +1,43 @@
+.App {
+  display: flex;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.content {
+  width: 80%;
+  padding: 20px;
+}
+
+.add-task input,
+.add-task button {
+  margin: 5px;
+}
+
+.assignment-table,
+.courses-table,
+.feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assignment-table th,
+.courses-table th,
+.feedback-table th,
+.assignment-table td,
+.courses-table td,
+.feedback-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.assignment-table th,
+.courses-table th,
+.feedback-table th {
+  background-color: #f4f4f4;
+}

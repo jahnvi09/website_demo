@@ -1,0 +1,24 @@
+.registration-container {
+    width: 300px;
+    height: 35vh;
+    margin-top: 9%;
+    margin-left: 50vh;
+    padding: 60px;
+    border: 1px solid #101010;
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+  }
+  
+  button {
+    padding: 10px;
+    margin-top: 10%;
+    background-color: rgba(51, 51, 110, 0.525);
+    color: rgb(23, 22, 22);
+    border: none;
+  }
+  
