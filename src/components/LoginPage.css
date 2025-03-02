@@ -18,7 +18,7 @@
 /* Container Box */
 .login__container {
     width: 320px;
-    margin-left: 250px;
+    /*margin-left: 250px;*/
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -29,6 +29,8 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     background-color: rgba(255, 255, 255, 0.95);
+    margin: 0 auto;  /* Removes extra left margin */
+    position: relative;
 }
 
 /* Input Fields */
@@ -88,6 +90,15 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
+
+    /* Ensure text is centered */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* Remove text underline */
+    text-decoration: none;
 }
 
 .login__registerButton:hover {

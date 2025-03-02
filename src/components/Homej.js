@@ -22,8 +22,7 @@ function HomePage() {
     Contact Us
 </a>
 
-                    {/* <a href="#">Resources</a> */}
-                    <button className="resources-container" onClick={() => navigate('/resources')}>Resources</button> 
+                    <button onClick={() => navigate('/resources')}>Student Resources</button>
                     <button className="login-button" onClick={() => navigate('/login')}>Login</button> 
                     <button className="registeration_container"onClick={() => navigate('/register')}>Register</button>
                 </nav>
@@ -39,4 +38,3 @@ function HomePage() {
 }
 
 export default HomePage;
-    

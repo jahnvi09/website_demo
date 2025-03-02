@@ -10,16 +10,24 @@ function Home() {
   const [subject, setSubject] = useState('');
   const [dueDate, setDueDate] = useState('');
 
-  const [courses, setCourses] = useState([
-    
-  ]);
+  const [courses, setCourses] = useState([]);
   const [courseName, setCourseName] = useState('');
   const [courseCode, setCourseCode] = useState('');
   const [term, setTerm] = useState('');
+  const [editingCourseIndex, setEditingCourseIndex] = useState(null);
 
   // Add a new task
   const addAssignment = () => {
     if (taskName && details && subject && dueDate) {
+      const isDuplicate = assignments.some(
+        (assignment) => assignment.taskName === taskName && assignment.dueDate === dueDate
+      );
+  
+      if (isDuplicate) {
+        alert('This assignment already exists.');
+        return;
+      }
+  
       setAssignments([...assignments, { taskName, details, subject, dueDate, done: false }]);
       setTaskName('');
       setDetails('');
@@ -30,9 +38,12 @@ function Home() {
     }
   };
 
-  // Delete a task
+  // Delete a task with confirmation
   const deleteAssignment = (index) => {
-    setAssignments(assignments.filter((_, i) => i !== index));
+    const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+    if (confirmDelete) {
+      setAssignments(assignments.filter((_, i) => i !== index));
+    }
   };
 
   // Mark a task as done
@@ -58,29 +69,66 @@ function Home() {
     }
     return null;
   };
+  const undoCompleted = (index) => {
+    setAssignments(assignments.map((assignment, i) =>
+      i === index ? { ...assignment, done: false } : assignment
+    ));
+  };
+  
   
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
-      const formattedDate = date.toISOString().split('T')[0]; // Convert date to YYYY-MM-DD
+      const formattedDate = date.toISOString().split('T')[0];
       const taskDates = assignments.map(assignment => assignment.dueDate);
       
       if (taskDates.includes(formattedDate)) {
-        return 'highlight-date'; // Add a highlight class
+        return 'highlight-date';
       }
     }
     return null;
   };
-  
 
-  // Add a new course
-  const addCourse = () => {
+  // Add or edit a course
+  const addOrEditCourse = () => {
     if (courseName && courseCode && term) {
-      setCourses([...courses, { name: courseName, code: courseCode, term }]);
+      if (editingCourseIndex !== null) {
+        // Edit existing course
+        const updatedCourses = [...courses];
+        updatedCourses[editingCourseIndex] = { name: courseName, code: courseCode, term };
+        setCourses(updatedCourses);
+        setEditingCourseIndex(null);
+      } else {
+        // Add new course
+        const isDuplicate = courses.some(
+          (course) => course.name === courseName && course.code === courseCode
+        );
+        if (isDuplicate) {
+          alert('This course already exists.');
+          return;
+        }
+        setCourses([...courses, { name: courseName, code: courseCode, term }]);
+      }
       setCourseName('');
       setCourseCode('');
       setTerm('');
     } else {
-      alert('Please fill in all fields before adding a course.');
+      alert('Please fill in all fields before adding or editing a course.');
+    }
+  };
+
+  // Start editing a course
+  const startEditingCourse = (index) => {
+    setEditingCourseIndex(index);
+    const courseToEdit = courses[index];
+    setCourseName(courseToEdit.name);
+    setCourseCode(courseToEdit.code);
+    setTerm(courseToEdit.term);
+  };
+
+  // Delete a course
+  const deleteCourse = (index) => {
+    if (window.confirm("Are you sure you want to delete this course?")) {
+      setCourses(courses.filter((_, i) => i !== index));
     }
   };
 
@@ -100,7 +148,7 @@ function Home() {
 
   return (
     <div className="home">
-      <h1>Home</h1>
+      <h1>Student</h1>
       <p>This is your Home Page! Here, you can see all your assignments as well as a preview of your calendar.</p>
 
       {/* Task Input Form */}
@@ -139,12 +187,22 @@ function Home() {
       </table>
 
       {/* Course Management */}
-      <h2>Add a Course</h2>
+      <h2>{editingCourseIndex !== null ? 'Edit Course' : 'Add a Course'}</h2>
       <div className="add-course">
         <input type="text" placeholder="Course Name" value={courseName} onChange={(e) => setCourseName(e.target.value)} />
         <input type="text" placeholder="Course Code" value={courseCode} onChange={(e) => setCourseCode(e.target.value)} />
-        <input type="text" placeholder="Term" value={term} onChange={(e) => setTerm(e.target.value)} />
-        <button onClick={addCourse}>Add Course</button>
+        <select value={term} onChange={(e) => setTerm(e.target.value)}>
+          <option value="">Select Term</option>
+          <option value="Fall">Fall 2025</option>
+          <option value="Spring">Spring 2025</option>
+          <option value="Summer">Summer 2025</option>
+        </select>
+        <button onClick={addOrEditCourse}>
+          {editingCourseIndex !== null ? 'Save Changes' : 'Add Course'}
+        </button>
+        {editingCourseIndex !== null && (
+          <button onClick={() => setEditingCourseIndex(null)}>Cancel</button>
+        )}
       </div>
 
       {/* Current Courses */}
@@ -155,6 +213,7 @@ function Home() {
             <th>Name</th>
             <th>Course Code</th>
             <th>Term</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -163,6 +222,10 @@ function Home() {
               <td>{course.name}</td>
               <td>{course.code}</td>
               <td>{course.term}</td>
+              <td>
+                <button onClick={() => startEditingCourse(index)}>Edit</button>
+                <button onClick={() => deleteCourse(index)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -173,34 +236,42 @@ function Home() {
         <div className="calendar-section">
           <h2>Calendar</h2>
           <Calendar tileClassName={tileClassName} tileContent={tileContent} />
-
         </div>
 
-        {/* Dynamic Deadline Countdown */}
-        <div className="deadline-widget">
-          <h2>Upcoming Deadlines</h2>
-          {sortedAssignments.length > 0 ? (
-            <ul>
-              {sortedAssignments.map((assignment, index) => (
-                <li key={index} className={assignment.done ? 'completed-task' : ''}>
-                  <strong>{assignment.taskName}</strong> - {assignment.subject}  
-                  <span className={`days-left ${getRemainingDays(assignment.dueDate) <= 2 ? 'urgent' : ''}`}>
-                    {getRemainingDays(assignment.dueDate)} days left
-                  </span>
-                  <button 
-                    className="done-button" 
-                    onClick={() => markAsDone(index)} 
-                    disabled={assignment.done}
-                  >
-                    {assignment.done ? 'Completed' : 'Done'}
-                  </button>
-                </li>
-              ))}
-            </ul>
+{/* Dynamic Deadline Countdown */}
+<div className="deadline-widget">
+  <h2>Upcoming Deadlines</h2>
+  {sortedAssignments.length > 0 ? (
+    <ul>
+      {sortedAssignments.map((assignment, index) => (
+        <li key={index} className={assignment.done ? 'completed-task' : ''}>
+          <strong>{assignment.taskName}</strong> - {assignment.subject}  
+          <span className={`days-left ${getRemainingDays(assignment.dueDate) <= 2 ? 'urgent' : ''}`}>
+            {getRemainingDays(assignment.dueDate)} days left
+          </span>
+          {assignment.done ? (
+            <button 
+              className="undo-button" 
+              onClick={() => undoCompleted(index)}
+            >
+              Undo
+            </button>
           ) : (
-            <p>No upcoming deadlines.</p>
+            <button 
+              className="done-button" 
+              onClick={() => markAsDone(index)}
+            >
+              Done
+            </button>
           )}
-        </div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No upcoming deadlines.</p>
+  )}
+</div>
+
       </div>
     </div>
   );

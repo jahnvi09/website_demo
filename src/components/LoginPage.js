@@ -48,7 +48,7 @@ function Login() {
         </p>
         
         <Link to="/register">
-          <button className='login__registerButton'>Create a Student Planner Account</button>
+          <button className="login__registerButton">Create a Student Planner Account</button>
         </Link>
       </div>
     </div>
