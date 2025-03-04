@@ -148,7 +148,7 @@ function Home() {
 
   return (
     <div className="home">
-      <h1>Student</h1>
+      <h1>Student Dashboard</h1>
       <p>This is your Home Page! Here, you can see all your assignments as well as a preview of your calendar.</p>
 
       {/* Task Input Form */}
