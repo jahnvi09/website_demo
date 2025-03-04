@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; URL='/'" />
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Store the current URL path in the session storage
+      sessionStorage.setItem('redirect', window.location.pathname);
+      // Redirect to the home page
+      window.location.replace('/');
+    </script>
   </head>
   <body>
-    <script type="text/javascript">
-      // Redirect to home pages
-      window.location.href = '/';
-    </script>
+    <p>Redirecting...</p>
   </body>
 </html>
