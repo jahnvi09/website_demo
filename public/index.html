@@ -25,6 +25,20 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <!-- Add this script near the top of your index.html file, before your app loads -->
+    <script>
+      (function() {
+        // Check if we need to redirect
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          // Remove the redirect item from storage
+          sessionStorage.removeItem('redirect');
+          // Redirect to the stored path
+          var path = redirect;
+          history.replaceState(null, null, path);
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
