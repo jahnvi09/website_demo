@@ -14,7 +14,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/website_demo">
       <MainLayout />
     </Router>
   );
