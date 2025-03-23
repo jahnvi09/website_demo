@@ -7,31 +7,60 @@ function Upload() {
   const [uploadedFiles, setUploadedFiles] = useState({});
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingSemester, setEditingSemester] = useState(null);
-  const [showTooltip, setShowTooltip] = useState(false); // Fixed missing state declaration
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState({}); // Track progress for each file
+
+  // Accepted file types and size limit
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+  const ACCEPTED_FILE_TYPES = ['image/png', 'image/jpeg', 'application/pdf'];
 
   const handleFileChange = (event) => {
     const newFiles = Array.from(event.target.files);
 
+    // Validate files
+    const validFiles = newFiles.filter((file) => {
+      if (!file || typeof file.name === 'undefined') {
+        alert('Invalid file selected.');
+        return false;
+      }
+      if (!ACCEPTED_FILE_TYPES.includes(file.type)) {
+        alert(`${file.name} is not an accepted file type. Only PNG, JPEG, and PDF files are allowed.`);
+        return false;
+      }
+      if (file.size > MAX_FILE_SIZE) {
+        alert(`${file.name} exceeds the size limit of 5 MB.`);
+        return false;
+      }
+      return true;
+    });
+
     if (editingIndex !== null) {
-      setFiles((prevFiles) => {
-        const updatedFiles = [...prevFiles];
-        updatedFiles[editingIndex] = newFiles[0];
-        return updatedFiles;
-      });
+      // Handle editing: Replace only if a valid file is selected
+      if (validFiles.length > 0) {
+        setFiles((prevFiles) => {
+          const updatedFiles = [...prevFiles];
+          updatedFiles[editingIndex] = validFiles[0];
+          return updatedFiles;
+        });
+      } 
       setEditingIndex(null);
     } else if (editingSemester !== null) {
-      setUploadedFiles((prev) => {
-        const updatedFiles = { ...prev };
-        updatedFiles[editingSemester][editingIndex] = newFiles[0];
-        return updatedFiles;
-      });
+      // Handle editing for uploaded files
+      if (validFiles.length > 0) {
+        setUploadedFiles((prev) => {
+          const updatedFiles = { ...prev };
+          updatedFiles[editingSemester][editingIndex] = validFiles[0];
+          return updatedFiles;
+        });
+      } 
       setEditingSemester(null);
       setEditingIndex(null);
     } else {
-      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      // Add new valid files to the state
+      setFiles((prevFiles) => [...prevFiles, ...validFiles]);
     }
 
-    event.target.value = "";
+    event.target.value = ""; // Reset file input
   };
 
   const handleUpload = () => {
@@ -45,14 +74,42 @@ function Upload() {
       return;
     }
 
-    setUploadedFiles((prev) => ({
-      ...prev,
-      [semester]: [...(prev[semester] || []), ...files],
-    }));
+    // Simulate upload progress for each file
+    files.forEach((file) => {
+      let progress = 0;
 
-    setFiles([]);
-    setSemester('');
-    alert('Files uploaded successfully!');
+      const intervalId = setInterval(() => {
+        setUploadProgress((prevProgress) => ({
+          ...prevProgress,
+          [file.name]: progress,
+        }));
+
+        if (progress >= 100) {
+          clearInterval(intervalId);
+
+          // Add file to uploaded files once upload is complete
+          setUploadedFiles((prev) => ({
+            ...prev,
+            [semester]: [...(prev[semester] || []), file],
+          }));
+
+          // Clear progress for the uploaded file
+          setUploadProgress((prevProgress) => {
+            const updatedProgress = { ...prevProgress };
+            delete updatedProgress[file.name];
+            return updatedProgress;
+          });
+        }
+
+        progress += 10; // Increment progress by 10%
+      }, 150); // Simulate upload every 200ms
+    });
+
+    setTimeout(() => {
+      setFiles([]);
+      setSemester('');
+      alert('All files uploaded successfully!');
+    }, files.length * 2000); // Wait for all files to "upload"
   };
 
   const removeFile = (index) => {
@@ -71,6 +128,10 @@ function Upload() {
   };
 
   const handlePreview = (file) => {
+    if (!file || typeof file.name === 'undefined') {
+      alert('Invalid file selected for preview.');
+      return;
+    }
     const fileURL = URL.createObjectURL(file);
     window.open(fileURL, '_blank');
   };
@@ -107,8 +168,13 @@ function Upload() {
 
       {/* File Input */}
       <div className="form-group">
-        <label htmlFor="file-upload">Select Files:</label>
+        <label htmlFor="file-upload">
+          Select Files (Accepted: PNG, JPEG, PDF | Max Size: 5MB):
+        </label>
         <input type="file" id="file-upload" multiple onChange={handleFileChange} />
+        <p className="file-info">
+          Accepted file types: PNG, JPEG, PDF. Max size: 5MB.
+        </p>
       </div>
 
       {/* Show Selected Files Before Upload */}
@@ -118,23 +184,34 @@ function Upload() {
           <ul>
             {files.map((file, index) => (
               <li key={index}>
-                <a href={URL.createObjectURL(file)} target="_blank" rel="noopener noreferrer">
-                  {file.name}
-                </a>
-                <button className="preview-btn" onClick={() => handlePreview(file)}>Preview</button>
-                <button className="edit-btn" onClick={() => handleEdit(index)}>Edit</button>
-                <button className="remove-btn" onClick={() => removeFile(index)}>Remove</button>
+                {file.name} ({(file.size / (1024 * 1024)).toFixed(2)} MB)
+                {uploadProgress[file.name] ? (
+                  <div className="progress-bar">
+                    <div
+                      className="progress"
+                      style={{ width: `${uploadProgress[file.name]}%` }}
+                    >
+                      {uploadProgress[file.name]}%
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <button className="preview-btn" onClick={() => handlePreview(file)}>Preview</button>
+                    <button className="edit-btn" onClick={() => handleEdit(index)}>Edit</button>
+                    <button className="remove-btn" onClick={() => removeFile(index)}>Remove</button>
+                  </>
+                )}
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      {/* Upload Button with Info Icon */}
+      {/* Upload Button */}
       <div className="upload-container">
         <button className="btn-primary" onClick={handleUpload}>Upload Files</button>
-        
-        {/* Info Icon with Tooltip */}
+
+        {/* Tooltip */}
         <div 
           className="info-icon" 
           onMouseEnter={() => setShowTooltip(true)}
@@ -160,9 +237,7 @@ function Upload() {
               <ul>
                 {files.map((file, index) => (
                   <li key={index}>
-                    <a href={URL.createObjectURL(file)} target="_blank" rel="noopener noreferrer">
-                      {file.name}
-                    </a>
+                    {file.name}
                     <button className="preview-btn" onClick={() => handlePreview(file)}>Preview</button>
                     <button className="edit-btn" onClick={() => handleEditUploaded(sem, index)}>Edit</button>
                     <button className="remove-btn" onClick={() => removeUploadedFile(sem, index)}>Remove</button>

@@ -35,6 +35,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  margin: 10px;
 }
 
 .btn-primary {
@@ -133,3 +134,8 @@ button {
 .info-icon:hover .tooltip {
   opacity: 1;
 }
+.progress-bar {
+  background-color: #f3f3f3;
+
+}
+
