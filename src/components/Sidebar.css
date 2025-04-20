@@ -1,65 +1,65 @@
 .sidebar {
-    width: 80px;
-    height: 100vh;
-    background-color: #1c4532; /* GMU green */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    position: fixed;
-  }
+    width: 80px !important;
+    height: 100vh !important;
+    background-color: #1c4532 !important; /* GMU green */
+    color: white !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding-top: 20px !important;
+    position: fixed !important;
+}
   
-  .logo {
-    text-align: center;
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
-  .logo h3{
-    color: white;
-  }
+.logo {
+    text-align: center !important;
+    font-size: 13px !important;
+    margin-bottom: 20px !important;
+}
+
+.logo h3 {
+    color: white !important;
+}
   
-  .logo-img {
-    width: 40px;
-    height: auto;
-    margin-bottom: 10px;
-  }
+.logo-img {
+    width: 40px !important;
+    height: auto !important;
+    margin-bottom: 10px !important;
+}
   
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-  }
+.sidebar ul {
+    list-style: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
   
-  .sidebar ul li {
-    position: relative;
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-  }
+.sidebar ul li {
+    position: relative !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 15px 0 !important;
+}
   
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 15px;
-  }
+.sidebar ul li a {
+    color: white !important;
+    text-decoration: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    font-size: 15px !important;
+}
   
-  .sidebar ul li svg {
-    font-size: 23px;
-    margin-bottom: 5px;
-  }
+.sidebar ul li svg {
+    font-size: 23px !important;
+    margin-bottom: 5px !important;
+}
   
-  .sidebar ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
   
-  .collapse-icon {
-    margin-top: auto;
-    padding: 20px 0;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
+.collapse-icon {
+    margin-top: auto !important;
+    padding: 20px 0 !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+}
