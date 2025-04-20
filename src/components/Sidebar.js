@@ -1,35 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaHome, FaTachometerAlt, FaUpload, FaStickyNote, FaArrowLeft } from 'react-icons/fa';
 import './Sidebar.css';
-import QuickStart from './Quickstart'; // Import QuickStart Component
+import QuickStart from './Quickstart'; // Import your QuickStart component
 
 function Sidebar() {
   return (
     <div className="sidebar">
-      <h2>Assignment Tracker</h2>
+      <div className="logo">
+        {/* <img src="/gmu-logo.png" alt="GMU Logo" className="logo-img" /> */}
+        <h3>SWE -632<br></br>User Interface Design</h3>
+      </div>
 
-      {/* Quick Start Button Added Below Assignment Tracker */}
+      {/* Quick Start button (below GMU logo) */}
       <QuickStart />
 
       <ul>
         <li>
-          <Link to="/">Home</Link> {/* Navigates to Home.js */}
+          <Link to="/"><FaHome /> Home</Link>
         </li>
         <li>
-          <Link to="/home">Student Dashboard</Link> {/* Navigates to Home.js */}
+          <Link to="/home"><FaTachometerAlt /> Dashboard</Link>
         </li>
         <li>
-          <Link to="/upload">Upload</Link> {/* Navigates to Upload.js */}
+          <Link to="/upload"><FaUpload /> Upload</Link>
         </li>
         <li>
-          {/* Open Notes in a New Tab */}
-          <a href="/notes" target="_blank" rel="noopener noreferrer">Notes</a>
+          {/* <a href="/notes" target="_blank" rel="noopener noreferrer"><FaStickyNote /> Notes</a> */}
+          <Link to="/notes" className="sidebar-link"><FaStickyNote />Notes</Link>
         </li>
       </ul>
+
+      <div className="collapse-icon">
+        {/* <FaArrowLeft /> */}
+      </div>
     </div>
   );
 }
 
 export default Sidebar;
-
-

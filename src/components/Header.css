@@ -1,43 +1,47 @@
-.header {
-    background-color: #D19683;
-    /* Replace with color in Image */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 20px;
-    position: sticky;
+#header {
+    background: url('../assets/header-bg.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    color: #fff;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
     top: 0;
-    z-index: 100;
-    /* Sit on top */
-}
-
-.header_logo {
-    color: #333;
-    text-decoration: none;
-}
-
-.header_nav {
-    display: flex;
-    justify-content: space-evenly;
-    width: 50%;
-}
-
-.header_link {
-    color: #231F20;
-    text-decoration: none;
-}
-
-.header_option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.header_optionLineOne {
-    font-size: 0.9em;
-}
-
-.header_optionLineTwo {
-    font-size: 1.1em;
+    left: 0;
+  }
+  
+  .intro-text {
+    text-align: center;
+    padding-top: 25vh;
+  }
+  
+  .intro-text h1 {
+    font-size: 48px;
     font-weight: bold;
-}
+  }
+  
+  .intro-text p {
+    font-size: 20px;
+    margin: 20px 0;
+  }
+  
+  .btn-custom {
+    background-color: #337ab7;
+    border: none;
+    color: white;
+    margin: 5px;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  .btn-custom:hover {
+    background-color: #286090;
+  }
+  

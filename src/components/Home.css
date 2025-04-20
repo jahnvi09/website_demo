@@ -1,19 +1,78 @@
 .home {
   padding: 20px;
+  margin-left: 90px;
+  background: #f7f7f7 !important;
+  min-height: 100vh;
+  color: #111 !important;
 }
 
+/* Card Wrapper and Banner */
+.card-wrapper {
+  background: #fff !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  margin: 24px 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #111 !important;
+}
+
+.card-banner {
+  background-color: #1c4532 !important;
+  color: #fff !important;
+  padding: 16px 24px;
+  text-align: left;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+.card-wrapper > *:not(.card-banner) {
+  padding: 28px 32px;
+  flex: 1 1 auto;
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* Dashboard Banner */
+.dashboard-banner {
+  background-color: #1c4532 !important;
+  color: #fff !important;
+  padding: 10px;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.dashboard-banner h1 {
+  margin: 0;
+  font-size: 2em;
+  font-weight: bold;
+  color: #fff !important;
+}
+
+/* Add Task, Add Course, Table Styles */
 .add-task input,
 .add-task button,
 .add-course input,
 .add-course button {
   margin: 5px;
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #ccc;
 }
 
 .assignment-table,
 .courses-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 10px;
+  background: #fff !important;
+  color: #111 !important;
 }
 
 .assignment-table th,
@@ -22,87 +81,287 @@
 .courses-table td {
   border: 1px solid #ddd;
   padding: 8px;
+  background: #fff !important;
+  color: #111 !important;
 }
 
 .assignment-table th,
 .courses-table th {
-  background-color: #f4f4f4;
+  background-color: #f4f4f4 !important;
+  color: #111 !important;
 }
 
 .add-course {
-  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.add-course input {
+.add-course input,
+.add-course select {
+  width: 150px;
   padding: 8px;
-  width: 200px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff !important;
+  color: #111 !important;
 }
 
 .add-course button {
-  padding: 8px;
-  background-color: #007bff;
-  color: white;
+  padding: 8px 12px;
+  font-size: 16px;
+  background-color: #28a745 !important;
+  color: #fff !important;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 
+.undo-button {
+  background: #ffc107 !important;
+  color: #111 !important;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none !important;
+}
 
-.dashboard {
+.undo-button:hover {
+  background: #ffab00 !important;
+  color: #111 !important;
+}
+
+/* CALENDAR & DEADLINES ROW */
+.calendar-deadline-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: stretch;
+  gap: 4%;
   margin-top: 20px;
+  width: 100%;
 }
 
-.calendar-section, .deadline-widget {
-  width: 48%;
-}
-
+.calendar-section,
 .deadline-widget {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 48%;
+  min-width: 320px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0 auto;
+  flex: 1 1 0;
+  background: #fff !important;
+  color: #111 !important;
 }
+
+.calendar-section .react-calendar {
+  margin: 0 auto;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+  background: #fff !important;
+  border-radius: 0 0 12px 12px;
+  box-sizing: border-box;
+  padding: 0 0 16px 0;
+  color: #111 !important;
+}
+
+/* Make sure calendar navigation is visible and styled */
+.react-calendar__navigation {
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  background: none !important;
+  color: #111 !important;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  min-height: 36px;
+  font-size: 1.5em;
+  color: #1c4532 !important;
+  background: none !important;
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.react-calendar__navigation__label {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #1c4532 !important;
+}
+
+/* Deadline Widget */
+/* .deadline-widget.card-wrapper {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background: #fff !important;
+  color: #111 !important;
+} */
 
 .deadline-widget ul {
-  list-style: none;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 32px 0 0 0;
+  gap: 18px;
+  background: #fff !important;
+  color: #111 !important;
+}
+
+/* .deadline-widget li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 16px 0;
+  font-size: 17px;
+  flex-wrap: wrap;
+  background: #fff !important;
+  color: #111 !important;
+} */
+
+/* .deadline-widget li strong {
+  min-width: 80px;
+  margin-right: 93px;
+  color: #111 !important;
+} */
+
+/* .deadline-widget li span.days-left {
+  margin-left: 0;
+  margin-right: 5px;
+  margin-left: 2px;
+  background: #dc3545 !important;
+  color: #fff !important;
+} */
+.deadline-widget ul {
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .deadline-widget li {
-  padding: 8px 0;
   display: flex;
-  justify-content: space-between;
-  font-size: 16px;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 0;
+  font-size: 17px;
+  background: #fff !important;
+  color: #111 !important;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.deadline-widget li strong {
+  min-width: 140px;
+  margin-right: 0;
+  font-weight: bold;
+  color: #111 !important;
+}
+
+.deadline-widget li .subject {
+  margin-right: 0;
+  color: #333;
+}
+
+.deadline-widget li .days-left {
+  background: #dc3545 !important;
+  color: #fff !important;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 0.95em;
+  display: inline-block;
+}
+
+.deadline-widget li .days-left.urgent {
+  background: #dc3545 !important;
+}
+
+.done-button,
+.undo-button {
+  background: #28a745 !important;
+  color: #fff !important;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+
+.completed-task {
+  background-color: #d4edda !important;
+  text-decoration: line-through;
+  color: #111 !important;
+}
+
+@media (max-width: 700px) {
+  .deadline-widget li {
+    font-size: 15px;
+    gap: 10px;
+  }
+  .deadline-widget li strong {
+    min-width: 90px;
+  }
+}
+
+
+.done-button,
+.undo-button {
+  margin-left: 57px;
+  background: #28a745 !important;
+  color: #fff !important;
+}
+
+.deadline-widget .no-deadlines-message {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  font-size: 1.1em;
+  color: #666 !important;
+  background: #fff !important;
 }
 
 .days-left {
   font-weight: bold;
   padding: 4px 8px;
   border-radius: 4px;
-  background: #28a745;
-  color: white;
+  background: #28a745 !important;
+  color: #fff !important;
+  margin-left: 10px;
 }
 
 .days-left.urgent {
-  background: #dc3545;
+  background: #dc3545 !important;
+  color: #fff !important;
 }
 
 .completed-task {
-  background-color: #d4edda !important; /* Light green for completed tasks */
+  background-color: #d4edda !important;
   text-decoration: line-through;
-}
-
-.deadline-widget li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
+  color: #111 !important;
 }
 
 .done-button {
-  background: #28a745;
-  color: white;
+  background: #28a745 !important;
+  color: #fff !important;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -110,54 +369,299 @@
 }
 
 .done-button:disabled {
-  background: #ccc;
+  background: #ccc !important;
+  color: #fff !important;
   cursor: not-allowed;
 }
 
-.days-left.urgent {
-  background: #dc3545;
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: white;
+/* Calendar Fixes for Light Mode and Dark Mode Immunity */
+.react-calendar__tile,
+.react-calendar__tile--active,
+.react-calendar__tile--now,
+.react-calendar__month-view__days__day {
+    color: #222 !important;
+    background: transparent !important;
 }
 
-.add-course {
+.react-calendar__tile--now {
+    background: #e6ffe6 !important;
+    color: #1c4532 !important;
+    border-radius: 50%;
+}
+
+.react-calendar__tile--active {
+    background: #1c4532 !important;
+    color: #fff !important;
+    border-radius: 50%;
+}
+
+/* Optional: Highlight dates with tasks */
+.highlight-date {
+  background: #c6f6d5 !important;
+  border-radius: 50%;
+  color: #1c4532 !important;
+}
+
+/* Responsive for small screens */
+@media (max-width: 900px) {
+  .calendar-deadline-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .calendar-section,
+  .deadline-widget {
+    width: 100%;
+    margin-bottom: 20px;
+    min-width: 0;
+  }
+}
+/* === DARK MODE OVERRIDES === */
+body.dark-mode .home {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .card-wrapper {
+  background: #111 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(255,255,255,0.10);
+}
+
+/* body.dark-mode .home .card-banner,
+body.dark-mode .home .dashboard-banner {
+  background-color: #fff !important;
+  color: #1c4532 !important;
+  border-bottom: 1px solid #222;
+}
+
+body.dark-mode .home .dashboard-banner h1 {
+  color: #1c4532 !important;
+} */
+body.dark-mode .card-banner,
+body.dark-mode .dashboard-banner {
+  background-color: #111 !important;  /* black */
+  color: #fff !important;             /* white text */
+}
+
+body.dark-mode .card-banner h2,
+body.dark-mode .dashboard-banner h1 {
+  color: #fff !important;
+}
+
+body.dark-mode .home .card-wrapper > *:not(.card-banner) {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .assignment-table,
+body.dark-mode .home .courses-table,
+body.dark-mode .home .assignment-table th,
+body.dark-mode .home .courses-table th,
+body.dark-mode .home .assignment-table td,
+body.dark-mode .home .courses-table td {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+body.dark-mode .home .assignment-table th,
+body.dark-mode .home .courses-table th {
+  background-color: #222 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .add-task input,
+body.dark-mode .home .add-task button,
+body.dark-mode .home .add-course input,
+body.dark-mode .home .add-course button,
+body.dark-mode .home .add-course select {
+  background: #111 !important;
+  color: #ffffff !important;
+  border: 1px solid #fff !important;
+}
+
+body.dark-mode .home .add-course button,
+body.dark-mode .home .done-button,
+body.dark-mode .home .undo-button {
+  background: #28a745 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .undo-button {
+  background: #ffc107 !important;
+  color: #111 !important;
+}
+body.dark-mode .home .undo-button:hover {
+  background: #ffab00 !important;
+  color: #111 !important;
+}
+
+body.dark-mode .home .calendar-section,
+body.dark-mode .home .deadline-widget {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .calendar-section .react-calendar {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .react-calendar__navigation,
+body.dark-mode .react-calendar__navigation__label {
+  color: #fff !important;
+  background: none !important;
+}
+
+body.dark-mode .react-calendar__navigation button {
+  color: #fff !important;
+}
+
+body.dark-mode .home .deadline-widget ul,
+body.dark-mode .home .deadline-widget li,
+body.dark-mode .home .deadline-widget .no-deadlines-message {
+  background: #111 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .days-left {
+  background: #28a745 !important;
+  color: #fff !important;
+}
+body.dark-mode .home .days-left.urgent {
+  background: #dc3545 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .home .completed-task {
+  background-color: #222 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .react-calendar__tile,
+body.dark-mode .react-calendar__tile--active,
+body.dark-mode .react-calendar__tile--now,
+body.dark-mode .react-calendar__month-view__days__day {
+  color: #fff !important;
+  background: transparent !important;
+}
+
+body.dark-mode .react-calendar__tile--now {
+  background: #444 !important;
+  color: #fff !important;
+  border-radius: 50%;
+}
+
+body.dark-mode .react-calendar__tile--active {
+  background: #fff !important;
+  color: #1c4532 !important;
+  border-radius: 50%;
+}
+
+body.dark-mode .home .highlight-date {
+  background: #444 !important;
+  color: #fff !important;
+}
+
+@media (max-width: 900px) {
+  body.dark-mode .calendar-section,
+  body.dark-mode .deadline-widget {
+    background: #111 !important;
+    color: #fff !important;
+  }
+}
+
+.form-vertical {
   display: flex;
-  gap: 10px; /* Space between elements */
-  align-items: center; /* Align items vertically */
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 32px;
+  background: #fff !important;
+  color: #111 !important;
 }
 
-.add-course input,
-.add-course select {
-  width: 150px; /* Adjust width as needed */
-  padding: 8px;
-  font-size: 16px;
+.form-vertical label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #1c4532;
+}
+
+.form-vertical input,
+.form-vertical select {
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.add-course button {
-  padding: 8px 12px;
-  font-size: 16px;
-  background-color: #28a745;
-  color: rgb(16, 15, 15);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.undo-button {
-  background: #ffc107;
-  color: black;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
   border-radius: 5px;
+  font-size: 1em;
+  background: #fff !important;
+  color: #111 !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.undo-button:hover {
-  background: #ffab00;
+
+.form-action {
+  margin-top: 14px;
+  align-self: flex-end;
+  padding: 10px 24px;
+  background-color: #28a745 !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-.undo-button {
-  text-decoration: none !important;
+
+.form-action:hover {
+  background-color: #218838 !important;
+}
+
+.form-cancel {
+  margin-top: 8px;
+  align-self: flex-end;
+  padding: 8px 20px;
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-cancel:hover {
+  background-color: #b52a37 !important;
+}
+.section-desc {
+  font-size: 1.05em;
+  color: #555 !important;
+  /* background: #f4f4f4 !important; */
+  padding: 8px 18px;
+  margin: 0 0 -25px -10px;
+  
+}
+
+
+.side-by-side-row {
+  display: flex;
+  gap: 3%;
+  margin-bottom: 32px;
+}
+
+.side-by-side-row .card-wrapper {
+  width: 48%;
+  min-width: 320px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+  .side-by-side-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .side-by-side-row .card-wrapper {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 20px;
+  }
 }

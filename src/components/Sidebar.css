@@ -1,27 +1,65 @@
 .sidebar {
-  width:30vh;
-  height: 150vh;
-  background-color: #333;
-  color: white;
-}
-
-.sidebar h2 {
-  text-align: center;
-}
-
-.sidebar ul {
-  list-style-type: none;
-}
-
-.sidebar ul li {
-  padding: 15px;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.sidebar ul li a:hover {
-  text-decoration: underline;
-}
+    width: 80px;
+    height: 100vh;
+    background-color: #1c4532; /* GMU green */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
+  }
+  
+  .logo {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .logo h3{
+    color: white;
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .sidebar ul li {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+  }
+  
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+  }
+  
+  .sidebar ul li svg {
+    font-size: 23px;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .collapse-icon {
+    margin-top: auto;
+    padding: 20px 0;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
