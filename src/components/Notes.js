@@ -196,17 +196,18 @@ const Notes = () => {
                         Last saved at: {lastSaved.toLocaleTimeString()}
                     </p>
                 )}
-                <button onClick={saveNoteToFile} style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#007BFF',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    marginTop: '8px'
-                }}>
-                    Save Notes
-                </button>
+          <button onClick={saveNoteToFile} style={{
+    padding: '8px 16px',
+    backgroundColor: '#1c8051', // <-- GREEN
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    marginTop: '8px'
+}}>
+    Save Notes
+</button>
+
             </div>
         </div>
     );
